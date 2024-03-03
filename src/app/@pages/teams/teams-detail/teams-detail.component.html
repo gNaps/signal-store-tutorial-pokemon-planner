@@ -1,0 +1,45 @@
+@if (isEdit && teamStore.teamSelected()) {
+  <h2>{{ teamStore.teamSelected()?.name }}</h2>
+  <div class="w-full py-2 px-4 shadow flex justify-between items-center mb-3">
+    @for (
+      pokemon of teamStore.teamSelected()!.pokemons;
+      track pokemon.id;
+      let i = $index
+    ) {
+      <div
+        class="flex justify-center items-center rounded"
+        (click)="onRemovePokemon(i)"
+      >
+        <img [src]="pokemon.image" />
+      </div>
+    }
+  </div>
+}
+
+<div class="flex gap-2 justify-center">
+  @for (g of generations; track g) {
+    <button
+      class="px-3 py-2 border border-blue-600 rounded-md"
+      [ngClass]="{
+        'bg-blue-600 text-white': pokedexStore.genActive() === g,
+        'text-blue-600': pokedexStore.genActive() !== g
+      }"
+      (click)="onChangeGen(g)"
+    >
+      {{ g | titlecase }}
+    </button>
+  }
+</div>
+
+<div class="flex flex-wrap gap-1 justify-center">
+  @if (pokedexStore.activePokedex()) {
+    @for (pokemon of pokedexStore.activePokedex(); track pokemon.id) {
+      <div
+        class="w-24 h-24 rounded-lg flex justify-center items-center cursor-pointer bg-slate-300 hover:bg-blue-600"
+        (click)="onAddPokemon(pokemon)"
+      >
+        <img [src]="pokemon.image" />
+      </div>
+    }
+  }
+</div>

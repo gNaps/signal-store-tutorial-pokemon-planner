@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+h1 {
+  @apply text-4xl lg:text-6xl;
+}
+
+h2 {
+  @apply text-3xl lg:text-5xl;
+}
+
+h3 {
+  @apply text-2xl lg:text-4xl;
+}
+
+h4 {
+  @apply text-xl lg:text-3xl;
+}
